@@ -63,7 +63,7 @@ NSString *const COVCoverageTypeUnknown = @"COVCoverageTypeUnknown";
     // Strip empty strings from the array (extra whitespaces)
     [components removeObject:@""];
     if ([components count] != 2) {
-        COVLog(@"Expected there to only be two components.");
+        COVLog(@"Expected there to only be two components. -> %@", components);
         return;
     }
 

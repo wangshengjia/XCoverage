@@ -328,6 +328,7 @@ static NSString *const COVManualSearchLocation = @"XCoverage-COVManualSearchLoca
     if (!currentURL) {
         return;
     }
+    COVLog(@"a: %@", currentURL);
     NSURL *manualLocation = [self cov_manualLocation];
     dispatch_async(_serialQueue, ^{
         NSURL *url = nil;
@@ -338,7 +339,9 @@ static NSString *const COVManualSearchLocation = @"XCoverage-COVManualSearchLoca
             COVLog(@"Doing an auto search.");
             url = [COVCoverageHelpers automaticallyFindCoverageFileForSourceFile:currentURL withPreviousLocationContext:_previousLocationContext];
         }
+        COVLog(@"b: %@", url);
         NSDictionary *coverageMap = [COVCoverageMap coverageMapForURL:url];
+        COVLog(@"c: %@", coverageMap);
         dispatch_async(dispatch_get_main_queue(), ^{
             if (![_currentFileURL isEqual:currentURL]) {
                 // If the _currentFileURL has already change then we should not update this data
